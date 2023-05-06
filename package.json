@@ -1,0 +1,14 @@
+{
+  "name": "scene-classification",
+  "version": "1.0.0",
+  "description": "Machine learning model for analysis and classification of scenes in cricket video footages.",
+  "main": "classify.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "4th year group",
+  "license": "ISC",
+  "dependencies": {
+    "flask": "^0.2.10"
+  }
+}

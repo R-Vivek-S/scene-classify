@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Flask App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        a.button {
+            display: block;
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #0062cc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to the Image Classification App</h1>
+        <p>Please upload a video file to classify the frames.</p>
+
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="video_path">Choose a video file:</label>
+                <input type="file" id="video_file" name="video_file">
+            </div>
+            <div>
+                <input type="submit" value="Predict">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
