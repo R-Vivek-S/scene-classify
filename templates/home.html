@@ -4,61 +4,244 @@
 <head>
     <title>My Flask App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            /* background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px); */
+
+
+            background: rgba(21, 21, 21, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8.5px);
+            -webkit-backdrop-filter: blur(8.5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            text-align: center;
+            padding-bottom: 10%;
         }
 
         h1 {
-            text-align: center;
-            margin-bottom: 30px;
+            font-size: 50px;
+            /* color: #fff; */
+            text-transform: capitalize;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+            color: black;
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.832);
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: rgb(255, 255, 255);
         }
 
         p {
             font-size: 18px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        a.button {
-            display: block;
-            text-align: center;
-            padding: 10px 20px;
-            background-color: #007bff;
             color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        a.button:hover {
-            background-color: #0062cc;
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        label {
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="file"] {
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.584);
+            padding: 10px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            color: #000000;
+            font-size: 17px;
+            /* text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+            cursor: pointer;
+        }
+
+        input[type=file]::file-selector-button {
+            margin-right: 20px;
+            border: none;
+            background: #084cdf;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+        }
+
+        input[type=file]::file-selector-button:hover {
+            background: #0d45a5;
+        }
+
+        input[type="submit"] {
+            appearance: none;
+            backface-visibility: hidden;
+            background-color: #27ae60;
+            border-radius: 8px;
+            border-style: none;
+            box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: normal;
+            line-height: 1.5;
+            outline: none;
+            overflow: hidden;
+            padding: 13px 40px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transform: translate3d(0, 0, 0);
+            transition: all .3s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e8449;
+            opacity: 1;
+            transform: translateY(0);
+            transition-duration: .35s;
+        }
+
+
+        input[type="submit"]:active {
+            transform: translateY(2px);
+            transition-duration: .35s;
+        }
+
+        input[type="submit"]:hover {
+            box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+        }
+
+        /* Slideshow */
+        /* slideshowcss */
+
+        .SScontainer {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+
+            overflow: hidden;
+            box-shadow: 10px 25px 30px rgba(30, 30, 200, 0.3);
+        }
+
+        .wrapper {
+            width: 100%;
+            display: flex;
+            animation: slide 11s infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(0);
+            }
+
+            30% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(-100%);
+            }
+
+            55% {
+                transform: translateX(-200%);
+            }
+
+            75% {
+                transform: translateX(-200%);
+            }
+
+            80% {
+                transform: translateX(-300%);
+            }
+
+            100% {
+                transform: translateX(-300%);
+            }
+        }
+
+        img {
+            width: 100vw;
+        }
+
+        /* slideshowcss */
+        /* Slideshow */
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Welcome to the Image Classification App</h1>
-        <p>Please upload a video file to classify the frames.</p>
+    <!-- Slideshow -->
+    <div class="SScontainer">
+        <div class="wrapper">
+            <img src="{{ url_for('static', filename='images/cricket-g0373f65b7_1920.jpg') }}">
+            <img src="{{ url_for('static', filename='images/cricket-g61049779f_1920.jpg') }}">
+            <img src="{{ url_for('static', filename='images/kevin-mueller-Q-fL04RhuMg-unsplash.jpg') }}">
+            <img src="{{ url_for('static', filename='images/samarth-shirke-ghxL3qOfkPo-unsplash.jpg') }}">
+        </div>
+    </div>
+    <!-- Slideshow -->
 
-        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
-            <div>
-                <label for="video_path">Choose a video file:</label>
-                <input type="file" id="video_file" name="video_file">
-            </div>
-            <div>
-                <input type="submit" value="Predict">
-            </div>
-        </form>
+    <div class="container">
+        <h1>Scene classification for sports video</h1>
+        <div>
+            <p>Please upload a video file to classify the frames.</p>
+
+            <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="video_path">Choose a video file:</label>
+                    <input type="file" id="video_file" name="video_file">
+                </div>
+                <div>
+                    <input type="submit" value="Predict">
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

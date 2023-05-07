@@ -62,9 +62,10 @@ def predict():
         frame = cv2.imread(frame_path)
         # resize to the input shape of your model
         frame = cv2.resize(frame, (224, 224))
+        frame=frame/255.
         frame = np.expand_dims(frame, axis=0)  # add a batch dimension
         predictions = model.predict(frame)
-        class_idx = np.argmax(predictions[0])
+        class_idx = np.argmax(predictions)
         class_name = class_names[class_idx]
         if class_name not in results:
             results[class_name] = []

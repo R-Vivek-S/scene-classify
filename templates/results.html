@@ -4,16 +4,37 @@
 <head>
     <title>Results</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
         }
 
+        .container {
+            position: absolute;
+            z-index: 99;
+            width: 100%;
+            background: rgba(21, 21, 21, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8.5px);
+            -webkit-backdrop-filter: blur(8.5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
         h1 {
-            color: #333333;
-            font-size: 2.5rem;
+            color: #ffffff;
+            font-size: 2.7rem;
             text-align: center;
             margin-top: 2rem;
+        }
+        h2{
+            color: #ffffff;
         }
 
         ul {
@@ -43,19 +64,91 @@
             line-height: 1.5;
             margin-bottom: 0.5rem;
         }
+
+
+        /* Slideshow */
+        /* slideshowcss */
+
+        .SScontainer {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+
+            overflow: hidden;
+            box-shadow: 10px 25px 30px rgba(30, 30, 200, 0.3);
+        }
+
+        .wrapper {
+            width: 100%;
+            display: flex;
+            animation: slide 11s infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(0);
+            }
+
+            30% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(-100%);
+            }
+
+            55% {
+                transform: translateX(-200%);
+            }
+
+            75% {
+                transform: translateX(-200%);
+            }
+
+            80% {
+                transform: translateX(-300%);
+            }
+
+            100% {
+                transform: translateX(-300%);
+            }
+        }
+
+        img {
+            width: 100vw;
+        }
+
+        /* slideshowcss */
+        /* Slideshow */
     </style>
 </head>
 
 <body>
+    <!-- Slideshow -->
+    <div class="SScontainer">
+        <div class="wrapper">
+            <img src="{{ url_for('static', filename='images/cricket-g0373f65b7_1920.jpg') }}">
+            <img src="{{ url_for('static', filename='images/cricket-g61049779f_1920.jpg') }}">
+            <img src="{{ url_for('static', filename='images/kevin-mueller-Q-fL04RhuMg-unsplash.jpg') }}">
+            <img src="{{ url_for('static', filename='images/samarth-shirke-ghxL3qOfkPo-unsplash.jpg') }}">
+        </div>
+    </div>
+    <!-- Slideshow -->
+
     <div class="container">
         <h1>Results</h1>
         {% for class_name, frame_names in results.items() %}
         <h2>Class {{ class_name }}:</h2>
         <ul>
-            {% for i in results %}
-            <li>{{ i }} </li>
+            {% for frame_name in frame_names %}
+            <li>{{ frame_name }} - {{class_name}}</li>
             {% endfor %}
         </ul>
+        <!-- {%print(results)%} -->
         {% endfor %}
     </div>
 </body>
