@@ -1,3 +1,4 @@
 frames/
 model/my_model.h5
 uploads/
+node_modules/
