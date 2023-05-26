@@ -32,10 +32,8 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # get the uploaded file
     video_file = request.files['video_file']
 
-    # save the file to the uploads folder
     video_path = os.path.join(app.config['UPLOAD_FOLDER'], video_file.filename)
     video_file.save(video_path)
 
@@ -53,17 +51,15 @@ def predict():
             cv2.imwrite(frame_path, frame)
         frame_count += 1
 
-    # loop through each extracted frame and classify it
     class_names = ['bowling', 'batting', 'boundary',
-                   'closeup', 'crowd']  # replace with your class names
+                   'closeup', 'crowd']  
     results = {}
     for frame_name in os.listdir(FRAMES_FOLDER):
         frame_path = os.path.join(FRAMES_FOLDER, frame_name)
         frame = cv2.imread(frame_path)
-        # resize to the input shape of your model
         frame = cv2.resize(frame, (224, 224))
         frame=frame/255.
-        frame = np.expand_dims(frame, axis=0)  # add a batch dimension
+        frame = np.expand_dims(frame, axis=0) 
         predictions = model.predict(frame)
         class_idx = np.argmax(predictions)
         class_name = class_names[class_idx]
@@ -77,7 +73,6 @@ def predict():
     #     frame_path = os.path.join(FRAMES_FOLDER, frame_name)
     #     os.remove(frame_path)
 
-    # render the results page with the classification results
     return render_template('results.html', results=results)
 
 
